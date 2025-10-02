@@ -1,6 +1,6 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello, GestionProduits!" << std::endl;
+    std::cout << "Hello, GestionEmployes!" << std::endl;
     return 0;
 }
