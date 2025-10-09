@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/res2">
+    <qresource prefix="/new/prefix1">
         <file>img/excel.png</file>
     </qresource>
 </RCC>

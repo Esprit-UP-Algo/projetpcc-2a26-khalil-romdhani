@@ -1,0 +1,13 @@
+debug/main.o
+debug/mainwindow.o
+debug/student.o
+debug/instructor.o
+debug/session.o
+debug/exportmanager.o
+debug/statisticsmanager.o
+debug/calendarwidget.o
+debug/mapwidget.o
+debug/moc_mainwindow.o
+debug/moc_statisticsmanager.o
+debug/moc_calendarwidget.o
+debug/moc_mapwidget.o

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/logo_app.png</file>
+        <file>icones/fermer.png</file>
+    </qresource>
+</RCC>

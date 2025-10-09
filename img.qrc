@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>img/Barre de progression.png</file>
-    </qresource>
-    <qresource prefix="/new/prefix2">
-        <file>img/Un diagramme en barr.png</file>
-    </qresource>
-</RCC>

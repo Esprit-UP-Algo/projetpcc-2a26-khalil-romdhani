@@ -1,0 +1,13 @@
+release/main.o
+release/mainwindow.o
+release/student.o
+release/instructor.o
+release/session.o
+release/exportmanager.o
+release/statisticsmanager.o
+release/calendarwidget.o
+release/mapwidget.o
+release/moc_mainwindow.o
+release/moc_statisticsmanager.o
+release/moc_calendarwidget.o
+release/moc_mapwidget.o
