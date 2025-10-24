@@ -1,0 +1,12 @@
+debug/Candidat.o
+debug/GereCandidat.o
+debug/connection.o
+debug/gerervehicule.o
+debug/main.o
+debug/mainwindow.o
+debug/vehicule.o
+debug/qrc_candidat.o
+debug/qrc_excel.o
+debug/qrc_img.o
+debug/qrc_pdf.o
+debug/moc_mainwindow.o

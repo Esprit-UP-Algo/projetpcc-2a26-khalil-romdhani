@@ -1,0 +1,12 @@
+release/Candidat.o
+release/GereCandidat.o
+release/connection.o
+release/gerervehicule.o
+release/main.o
+release/mainwindow.o
+release/vehicule.o
+release/qrc_candidat.o
+release/qrc_excel.o
+release/qrc_img.o
+release/qrc_pdf.o
+release/moc_mainwindow.o
