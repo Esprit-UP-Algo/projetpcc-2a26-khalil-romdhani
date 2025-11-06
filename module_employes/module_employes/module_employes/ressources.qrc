@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/logo_app.png</file>
+        <file>icones/fermer.png</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>images/Statstiques.jpg</file>
+    </qresource>
+    <qresource prefix="/yyyy">
+        <file>images/logo.png</file>
+    </qresource>
+</RCC>
