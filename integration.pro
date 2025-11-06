@@ -12,11 +12,13 @@ SOURCES += \
     connection.cpp \
     main.cpp \
     mainwindow.cpp \
-    veh.cpp
+    veh.cpp \
+    vehSQL.cpp
 HEADERS += \
     connection.h \
     mainwindow.h \
-    veh.h
+    veh.h \
+    vehSQL.h
 FORMS += \
     mainwindow.ui
 

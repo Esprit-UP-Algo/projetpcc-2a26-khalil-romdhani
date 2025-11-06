@@ -312,7 +312,7 @@ QLabel#titleLabel {
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">#type {
+           <string notr="true">#type_v {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 5px 10px;
@@ -320,13 +320,13 @@ QLabel#titleLabel {
     color: #0F2434;
 }
 
-#type QAbstractItemView {
+#type_v QAbstractItemView {
     background-color: #FBFAF5;
     selection-background-color: #1D9E3A;
     selection-color: #FBFAF5;
 }
 
-#type:focus {
+#type_v:focus {
     border: 2px solid #1D9E3A;
 }
 </string>
@@ -367,7 +367,7 @@ QLabel#titleLabel {
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">#marque {
+           <string notr="true">#marque_v {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 6px 10px;
@@ -376,7 +376,7 @@ QLabel#titleLabel {
     selection-color: #FBFAF5;
 }
 
-#marque:focus {
+#marque_v:focus {
     border: 2px solid #1D9E3A;
 }</string>
           </property>
@@ -391,7 +391,7 @@ QLabel#titleLabel {
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">#modele {
+           <string notr="true">#modele_v {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 6px 10px;
@@ -400,7 +400,7 @@ QLabel#titleLabel {
     selection-color: #FBFAF5;
 }
 
-#modele:focus {
+#modele_v:focus {
     border: 2px solid #1D9E3A;
 }</string>
           </property>
@@ -463,7 +463,7 @@ QLabel#titleLabel {
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">#km {
+           <string notr="true">#kilometrage_v {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 6px 10px;
@@ -472,7 +472,7 @@ QLabel#titleLabel {
     selection-color: #FBFAF5;
 }
 
-#km:focus {
+#kilometrage_v:focus {
     border: 2px solid #1D9E3A;
 }</string>
           </property>
@@ -487,7 +487,7 @@ QLabel#titleLabel {
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">#date_rev {
+           <string notr="true">#date_maint_v {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 4px 8px;
@@ -497,11 +497,11 @@ QLabel#titleLabel {
     selection-color: #FBFAF5;
 }
 
-#date_rev:focus {
+#date_maint_v:focus {
     border: 2px solid #1D9E3A;
 }
 
-#date_rev QAbstractItemView {
+#date_maint_v QAbstractItemView {
     background-color: #FBFAF5;
     selection-background-color: #1D9E3A;
     selection-color: #FBFAF5;
@@ -581,7 +581,7 @@ QLabel#titleLabel {
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">#date_rev {
+           <string notr="true">#date_achat_v {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 4px 8px;
@@ -591,11 +591,11 @@ QLabel#titleLabel {
     selection-color: #FBFAF5;
 }
 
-#date_rev:focus {
+#date_achat_v:focus {
     border: 2px solid #1D9E3A;
 }
 
-#date_rev QAbstractItemView {
+#date_achat_v QAbstractItemView {
     background-color: #FBFAF5;
     selection-background-color: #1D9E3A;
     selection-color: #FBFAF5;
