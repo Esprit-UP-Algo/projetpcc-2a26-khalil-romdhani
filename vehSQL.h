@@ -34,6 +34,9 @@ public:
                      QDateEdit* ui_date_achat_v, QDateEdit* ui_date_maint_v, QTableWidget* table);
 
     void refTab(QTableWidget* ui_table_ajout_v);
+    void filtrerTab(QTableWidget* ui_table_ajout_v, const QString& filtre, const QString& tri = "");
+    void trierTab(QTableWidget* ui_table_ajout_v, const QString& critere);
+    void rech(QTableWidget* ui_table_ajout_v, const QString& modele);
 
 private:
     bool chercheMat(const QString& matricule, const QString& suppMat = "");

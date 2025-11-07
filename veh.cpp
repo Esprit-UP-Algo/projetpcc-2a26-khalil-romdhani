@@ -2,6 +2,9 @@
 #include "vehSQL.h"
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QPrinter>
+#include <QPainter>
+#include <QFileDialog>
 
 veh::veh()
 {
@@ -16,6 +19,9 @@ veh::veh()
     ui_date_achat_v = nullptr;
     ui_date_maint_v = nullptr;
     ui_table_ajout_v = nullptr;
+    ui_filtrer_v = nullptr;
+    ui_trier_v = nullptr;
+    ui_taper_v = nullptr;
     currM = "";
     sqli = new vehSQL(this);
 }
@@ -62,6 +68,7 @@ bool veh::verifV(const QString& matricule, const QString& type, const QString& m
     if (marque == "Isuzu" && modele != "Eco Classic")
     {
         QMessageBox::warning(nullptr,"erreur","modele doit etre Eco Classic");
+        return false;
     }
     if(marque == "Volvo" && (modele != "FE" && modele != "FM"))
     {
@@ -168,7 +175,18 @@ void veh::affTab(QTableWidget* table)
 
 void veh::refTab()
 {
-    sqli->refTab(ui_table_ajout_v);
+    if(ui_filtrer_v && ui_filtrer_v->currentText() != "Tous") {
+        filtrerV();
+        if(ui_trier_v && ui_trier_v->currentText() != "Trier par") {
+            trierV();
+        }
+    } else {
+        if(ui_trier_v && ui_trier_v->currentText() != "Trier par") {
+            trierV();
+        } else {
+            sqli->refTab(ui_table_ajout_v);
+        }
+    }
 }
 
 void veh::ConfV()
@@ -254,4 +272,116 @@ void veh::suppV()
 {
     sqli->suppV(currM);
     refTab();
+}
+
+void veh::initFiltrer(QComboBox* filtrer_v)
+{
+    this->ui_filtrer_v = filtrer_v;
+    ui_filtrer_v->clear();
+    ui_filtrer_v->addItem("Tous");
+    ui_filtrer_v->addItem("Voiture");
+    ui_filtrer_v->addItem("Moto");
+    ui_filtrer_v->addItem("AutoBus");
+    ui_filtrer_v->addItem("Camion poids lourd");
+    connect(ui_filtrer_v, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &veh::filtrerV);
+}
+
+void veh::filtrerV()
+{
+    if(!ui_filtrer_v || !ui_table_ajout_v) return;
+
+    QString filtre = ui_filtrer_v->currentText();
+    sqli->filtrerTab(ui_table_ajout_v, filtre);
+}
+
+void veh::initTrier(QComboBox* trier_v)
+{
+    this->ui_trier_v = trier_v;
+    ui_trier_v->clear();
+    ui_trier_v->addItem("Trier par");
+    ui_trier_v->addItem("Année croissante");
+    ui_trier_v->addItem("Année décroissante");
+    ui_trier_v->addItem("Kilométrage croissant");
+    ui_trier_v->addItem("Kilométrage décroissant");
+    connect(ui_trier_v, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &veh::trierV);
+}
+
+void veh::trierV()
+{
+    if(!ui_trier_v || !ui_table_ajout_v) return;
+
+    QString critere = ui_trier_v->currentText();
+    if(critere == "Trier par") {
+        refTab();
+        return;
+    }
+
+    sqli->trierTab(ui_table_ajout_v, critere);
+}
+
+void veh::initRech(QLineEdit* taper_v)
+{
+    this->ui_taper_v = taper_v;
+}
+
+void veh::rechV()
+{
+    if(!ui_taper_v || !ui_table_ajout_v) return;
+
+    QString modele = ui_taper_v->text();
+    sqli->rech(ui_table_ajout_v, modele);
+}
+
+void veh::expoV()
+{
+    if(!ui_table_ajout_v || ui_table_ajout_v->rowCount() == 0) {
+        QMessageBox::warning(nullptr, "erreur", "aucune donnee a exporter");
+        return;
+    }
+
+    QString fileName = QFileDialog::getSaveFileName(nullptr, "exporter en PDF", "", "PDF Files (*.pdf)");
+    if(fileName.isEmpty()) return;
+
+    QPrinter printer;
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPageOrientation(QPageLayout::Landscape);
+    printer.setOutputFileName(fileName);
+
+    QPainter painter;
+    painter.begin(&printer);
+    QFont font = painter.font();
+    font.setPointSize(7);
+    painter.setFont(font);
+    int colPositions[8] = {30, 80, 130, 180, 230, 280, 330, 380};
+    int y = 50;
+    QStringList headers = {"Matricule", "Type", "Marque", "Modèle", "Date d'achat", "État", "Km", "Date de révision"};
+    for(int col = 0; col < headers.size(); col++) {
+        painter.drawText(colPositions[col], y, headers[col]);
+    }
+    y += 20;
+    painter.drawLine(30, y, 400, y);
+    y += 15;
+
+    for(int row = 0; row < ui_table_ajout_v->rowCount(); ++row) {
+        for(int col = 0; col < ui_table_ajout_v->columnCount(); ++col) {
+            QTableWidgetItem* item = ui_table_ajout_v->item(row, col);
+            if(item) {
+                QString text = item->text();
+                if(text.contains("T00:00:00.000")) {
+                    text = text.split("T").first();
+                }
+                painter.drawText(colPositions[col], y, text);
+            }
+        }
+        y += 15;
+        if(y > 250) {
+            printer.newPage();
+            y = 50;
+        }
+    }
+
+    painter.end();
+    QMessageBox::information(nullptr, "succès", "PDF exporte avec succes");
 }

@@ -697,7 +697,7 @@ QLabel#titleLabel {
            <x>320</x>
            <y>20</y>
            <width>91</width>
-           <height>26</height>
+           <height>31</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -721,7 +721,7 @@ QLabel#titleLabel {
          </property>
          <item>
           <property name="text">
-           <string>Filtrer</string>
+           <string>Tous</string>
           </property>
          </item>
          <item>
@@ -745,8 +745,8 @@ QLabel#titleLabel {
           <rect>
            <x>430</x>
            <y>20</y>
-           <width>76</width>
-           <height>26</height>
+           <width>231</width>
+           <height>31</height>
           </rect>
          </property>
          <property name="styleSheet">

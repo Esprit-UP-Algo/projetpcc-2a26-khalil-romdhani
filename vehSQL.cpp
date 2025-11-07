@@ -250,6 +250,117 @@ void vehSQL::refTab(QTableWidget* ui_table_ajout_v)
     }
 }
 
+void vehSQL::filtrerTab(QTableWidget* ui_table_ajout_v, const QString& filtre, const QString& tri)
+{
+    if(!ui_table_ajout_v) return;
+
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) {
+        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
+        return;
+    }
+
+    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui_table_ajout_v->setRowCount(0);
+
+    QSqlQuery query;
+    QString sqlQuery;
+
+    if(filtre == "Tous" || filtre.isEmpty()) {
+        sqlQuery = "SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES";
+    } else {
+        sqlQuery = "SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES WHERE TYPE_V = :type";
+    }
+
+    if(!tri.isEmpty() && tri != "Trier par") {
+        if(tri == "Année croissante") {
+            sqlQuery += " ORDER BY ANNEE_V ASC";
+        } else if(tri == "Année décroissante") {
+            sqlQuery += " ORDER BY ANNEE_V DESC";
+        } else if(tri == "Kilométrage croissant") {
+            sqlQuery += " ORDER BY KILOMETRAGE_V ASC";
+        } else if(tri == "Kilométrage décroissant") {
+            sqlQuery += " ORDER BY KILOMETRAGE_V DESC";
+        }
+    } else {
+        sqlQuery += " ORDER BY MATRICULE";
+    }
+
+    query.prepare(sqlQuery);
+    if(!filtre.isEmpty() && filtre != "Tous") {
+        query.bindValue(":type", filtre);
+    }
+
+    if(!query.exec()) {
+        QMessageBox::warning(nullptr, "erreur", "erreur lors du filtrage: " + query.lastError().text());
+        return;
+    }
+
+    int row = 0;
+    while(query.next()) {
+        ui_table_ajout_v->insertRow(row);
+        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
+        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
+        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
+        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
+        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
+        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
+        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
+        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
+        row++;
+    }
+}
+
+void vehSQL::trierTab(QTableWidget* ui_table_ajout_v, const QString& critere)
+{
+    if(!ui_table_ajout_v) return;
+
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) {
+        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
+        return;
+    }
+
+    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui_table_ajout_v->setRowCount(0);
+
+    QSqlQuery query;
+    QString sqlQuery = "SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES";
+
+    if(critere == "Année croissante") {
+        sqlQuery += " ORDER BY ANNEE_V ASC";
+    } else if(critere == "Année décroissante") {
+        sqlQuery += " ORDER BY ANNEE_V DESC";
+    } else if(critere == "Kilométrage croissant") {
+        sqlQuery += " ORDER BY KILOMETRAGE_V ASC";
+    } else if(critere == "Kilométrage décroissant") {
+        sqlQuery += " ORDER BY KILOMETRAGE_V DESC";
+    } else {
+        sqlQuery += " ORDER BY MATRICULE";
+    }
+
+    query.prepare(sqlQuery);
+
+    if(!query.exec()) {
+        QMessageBox::warning(nullptr, "erreur", "erreur lors du tri: " + query.lastError().text());
+        return;
+    }
+
+    int row = 0;
+    while(query.next()) {
+        ui_table_ajout_v->insertRow(row);
+        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
+        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
+        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
+        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
+        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
+        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
+        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
+        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
+        row++;
+    }
+}
+
 bool vehSQL::chercheMat(const QString& matricule, const QString& suppMat)
 {
     Connection* conn = Connection::instance();
@@ -271,4 +382,46 @@ bool vehSQL::chercheMat(const QString& matricule, const QString& suppMat)
         return checkQuery.value(0).toInt() > 0;
     }
     return false;
+}
+
+void vehSQL::rech(QTableWidget* ui_table_ajout_v, const QString& modele)
+{
+    if(!ui_table_ajout_v) return;
+
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) {
+        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
+        return;
+    }
+
+    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui_table_ajout_v->setRowCount(0);
+
+    QSqlQuery query;
+
+    if(modele.isEmpty()) {
+        query.prepare("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES");
+    } else {
+        query.prepare("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES WHERE UPPER(MODELE_V) LIKE UPPER(:modele)");
+        query.bindValue(":modele", "%" + modele + "%");
+    }
+
+    if(!query.exec()) {
+        QMessageBox::warning(nullptr, "erreur", "erreur lors de la recherche: " + query.lastError().text());
+        return;
+    }
+
+    int row = 0;
+    while(query.next()) {
+        ui_table_ajout_v->insertRow(row);
+        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
+        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
+        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
+        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
+        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
+        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
+        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
+        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
+        row++;
+    }
 }

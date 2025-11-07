@@ -33,6 +33,9 @@ public:
 
     void affTab(QTableWidget* table);
     void refTab();
+    void initFiltrer(QComboBox* filtrer_v);
+    void initTrier(QComboBox* trier_v);
+    void initRech(QLineEdit* taper_v);
 
 public slots:
     void ConfV();
@@ -40,7 +43,10 @@ public slots:
     void suppV();
     void modifV();
     void tabClick(const QModelIndex &i);
-
+    void filtrerV();
+    void trierV();
+    void rechV();
+    void expoV();
 private:
     QLineEdit* ui_matricule;
     QComboBox* ui_type_v;
@@ -53,7 +59,9 @@ private:
     QDateEdit* ui_date_achat_v;
     QDateEdit* ui_date_maint_v;
     QTableWidget* ui_table_ajout_v;
-
+    QComboBox* ui_filtrer_v;
+    QComboBox* ui_trier_v;
+    QLineEdit* ui_taper_v;
     QString currM;
     vehSQL* sqli;
 };

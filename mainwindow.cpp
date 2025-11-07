@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     veh *v = new veh();
     v->initV(ui->matricule, ui->type_v, ui->marque_v, ui->modele_v, ui->kilometrage_v,ui->bon, ui->entretien, ui->panne, ui->date_achat_v, ui->date_maint_v);
-
+    v->initFiltrer(ui->filtrer_v);
+    v->initTrier(ui->trier_v);
     connect(ui->conf_v, &QPushButton::clicked, v, &veh::ConfV);
     connect(ui->supp_v, &QPushButton::clicked, v, &veh::suppV);
     connect(ui->reins_v, &QPushButton::clicked, v, &veh::reinitV);
@@ -20,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->table_ajout_v, &QTableWidget::clicked, v, &veh::tabClick);
     v->affTab(ui->table_ajout_v);
     v->refTab();
+    v->initRech(ui->taper_v);
+    connect(ui->conf_rv, &QPushButton::clicked, v, &veh::rechV);
+    connect(ui->expo_v, &QPushButton::clicked, v, &veh::expoV);
 }
 
 MainWindow::~MainWindow()
