@@ -41,10 +41,7 @@ void vehSQL::ConfV(QLineEdit* ui_matricule, QComboBox* ui_type_v, QLineEdit* ui_
         return;
     }
 
-    QSqlQuery checkQuery;
-    checkQuery.prepare("SELECT COUNT(*) FROM VEHICULES WHERE MATRICULE = :matricule");
-    checkQuery.bindValue(":matricule", matricule);
-    if(checkQuery.exec() && checkQuery.next() && checkQuery.value(0).toInt() > 0) {
+    if(chercheMat(matricule)) {
         QMessageBox::warning(nullptr, "erreur", "matricule existe deja");
         return;
     }
@@ -85,13 +82,14 @@ void vehSQL::modifV(QLineEdit* ui_matricule, QComboBox* ui_type_v, QLineEdit* ui
                     QRadioButton* ui_entretien, QRadioButton* ui_panne, QDateEdit* ui_date_achat_v,
                     QDateEdit* ui_date_maint_v, QString& currM)
 {
-    QString matricule = ui_matricule->text();
     QString type = ui_type_v->currentText();
     QString marque = ui_marque_v->text();
     QString modele = ui_modele_v->text();
     QString kilometrage = ui_kilometrage_v->text();
     QDate dateAchat = ui_date_achat_v->date();
     QDate dateMaint = ui_date_maint_v->date();
+
+    QString nouvMat = ui_matricule->text();
 
     bool bon = ui_bon->isChecked();
     bool entretien = ui_entretien->isChecked();
@@ -107,21 +105,18 @@ void vehSQL::modifV(QLineEdit* ui_matricule, QComboBox* ui_type_v, QLineEdit* ui
         return;
     }
 
-    if(matricule != currM) {
-        if(chercheMat(matricule, currM)) {
-            QMessageBox::warning(nullptr, "erreur", "matricule existe deja");
-            return;
-        }
+    if(nouvMat != currM)
+    {
+        QMessageBox::warning(nullptr,"erreur","matricule ne peut pas etre modifiee");
+        return;
     }
-
     QSqlQuery query;
-    query.prepare("UPDATE VEHICULES SET MATRICULE = :new_matricule, TYPE_V = :type, MARQUE_V = :marque, "
+    query.prepare("UPDATE VEHICULES SET TYPE_V = :type, MARQUE_V = :marque, "
                   "MODELE_V = :modele, ANNEE_V = TO_DATE(:annee, 'YYYY-MM-DD'), ETAT_V = :etat, "
                   "KILOMETRAGE_V = :kilometrage, DATE_MAINT_V = TO_DATE(:date_maint, 'YYYY-MM-DD') "
-                  "WHERE MATRICULE = :old_matricule");
+                  "WHERE MATRICULE = :matricule");
 
-    query.bindValue(":old_matricule", currM);
-    query.bindValue(":new_matricule", matricule);
+    query.bindValue(":matricule", currM);
     query.bindValue(":type", type);
     query.bindValue(":marque", marque);
     query.bindValue(":modele", modele);

@@ -108,8 +108,8 @@ QTabWidget#widget_v QTabBar::tab:hover {
           <rect>
            <x>10</x>
            <y>70</y>
-           <width>301</width>
-           <height>411</height>
+           <width>361</width>
+           <height>461</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -543,8 +543,8 @@ QLabel#titleLabel {
          <widget class="QPushButton" name="reins_v">
           <property name="geometry">
            <rect>
-            <x>150</x>
-            <y>370</y>
+            <x>10</x>
+            <y>410</y>
             <width>131</width>
             <height>29</height>
            </rect>
@@ -603,6 +603,37 @@ QLabel#titleLabel {
 </string>
           </property>
          </widget>
+         <widget class="QPushButton" name="modif_v">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>370</y>
+            <width>121</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#modif_v {
+    background-color: #228B22;
+    color: #FBFAF5;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+#modif_v:hover {
+    background-color: #28a428;
+}
+
+#modif_v:pressed {
+    background-color: #1c771c;
+}</string>
+          </property>
+          <property name="text">
+           <string>Modifier ✏️</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QLabel" name="label">
          <property name="geometry">
@@ -628,7 +659,7 @@ QLabel#titleLabel {
         <widget class="QPushButton" name="expo_v">
          <property name="geometry">
           <rect>
-           <x>320</x>
+           <x>380</x>
            <y>480</y>
            <width>121</width>
            <height>31</height>
@@ -814,7 +845,7 @@ QLabel#titleLabel {
         <widget class="QPushButton" name="supp_v">
          <property name="geometry">
           <rect>
-           <x>450</x>
+           <x>520</x>
            <y>480</y>
            <width>121</width>
            <height>31</height>
@@ -845,10 +876,10 @@ QLabel#titleLabel {
         <widget class="QTableWidget" name="table_ajout_v">
          <property name="geometry">
           <rect>
-           <x>325</x>
-           <y>60</y>
+           <x>380</x>
+           <y>70</y>
            <width>831</width>
-           <height>411</height>
+           <height>401</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -945,37 +976,6 @@ QLabel#titleLabel {
            <string>Date de révision</string>
           </property>
          </column>
-        </widget>
-        <widget class="QPushButton" name="modif_v">
-         <property name="geometry">
-          <rect>
-           <x>580</x>
-           <y>480</y>
-           <width>121</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">#modif_v {
-    background-color: #228B22;
-    color: #FBFAF5;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
-    font-weight: bold;
-}
-
-#modif_v:hover {
-    background-color: #28a428;
-}
-
-#modif_v:pressed {
-    background-color: #1c771c;
-}</string>
-         </property>
-         <property name="text">
-          <string>Modifier ✏️</string>
-         </property>
         </widget>
        </widget>
        <widget class="QWidget" name="tab_2">
@@ -6222,8 +6222,8 @@ text-decoration: underline;</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="excel.qrc"/>
   <include location="pdf.qrc"/>
+  <include location="excel.qrc"/>
  </resources>
  <connections/>
 </ui>

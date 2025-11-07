@@ -2,7 +2,6 @@
 #include "vehSQL.h"
 #include <QMessageBox>
 #include <QRegularExpression>
-#include <QDebug>
 
 veh::veh()
 {
