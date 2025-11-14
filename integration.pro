@@ -9,18 +9,33 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Candidat.cpp \
+    GereCandidat.cpp \
     connection.cpp \
+    employe.cpp \
+    employeSQL.cpp \
+    geremoniteur.cpp \
+    login.cpp \
     main.cpp \
     mainwindow.cpp \
+    moniteur.cpp \
     veh.cpp \
     vehSQL.cpp
 HEADERS += \
+    Candidat.h \
+    GereCandidat.h \
     connection.h \
+    employe.h \
+    employeSQL.h \
+    geremoniteur.h \
+    login.h \
     mainwindow.h \
+    moniteur.h \
     veh.h \
     vehSQL.h
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui\
+    login.ui
 
 
 
