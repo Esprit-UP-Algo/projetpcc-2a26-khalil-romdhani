@@ -1,0 +1,11 @@
+release/Candidat.o
+release/main.o
+release/mainwindow.o
+release/connection.o
+release/vehicule.o
+release/gerervehicule.o
+release/GereCandidat.o
+release/seance.o
+release/gereseance.o
+release/qrc_seance.o
+release/moc_mainwindow.o

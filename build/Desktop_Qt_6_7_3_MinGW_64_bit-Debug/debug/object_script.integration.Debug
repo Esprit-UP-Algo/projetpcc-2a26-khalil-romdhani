@@ -1,0 +1,11 @@
+debug/Candidat.o
+debug/main.o
+debug/mainwindow.o
+debug/connection.o
+debug/vehicule.o
+debug/gerervehicule.o
+debug/GereCandidat.o
+debug/seance.o
+debug/gereseance.o
+debug/qrc_seance.o
+debug/moc_mainwindow.o
