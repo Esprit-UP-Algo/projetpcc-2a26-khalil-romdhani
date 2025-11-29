@@ -2,22 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QDate>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
+namespace Ui { class MainWindow; }
+class GroqManager;  // Changed from GeminiManager
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
 private slots:
     void on_fermer_btn_clicked();
     void on_vehicule_btn_clicked();
@@ -25,8 +19,15 @@ private slots:
     void on_seance_btn_clicked();
     void on_emp_btn_clicked();
     void on_moniteur_btn_clicked();
-
+    void on_accueil_clicked();
+    void on_vehicule_clicked();
+    void on_candidat_clicked();
+    void on_seance_clicked();
+    void on_emp_clicked();
+    void on_moniteur_clicked();
 private:
     Ui::MainWindow *ui;
+    GroqManager* m_groqManager;
 };
-#endif // MAINWINDOW_H
+
+#endif

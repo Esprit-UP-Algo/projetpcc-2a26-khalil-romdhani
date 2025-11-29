@@ -37,9 +37,16 @@ public:
     void filtrerTab(QTableWidget* ui_table_ajout_v, const QString& filtre, const QString& tri = "");
     void trierTab(QTableWidget* ui_table_ajout_v, const QString& critere);
     void rech(QTableWidget* ui_table_ajout_v, const QString& modele);
-
-private:
+    int recBonnb();
+    int recEntrenb();
+    int recPannenb();
+    int recVoiturenb();
+    int recMotonb();
+    int recBusnb();
+    int recCamionnb();
+    QMap<QString, QVariant> fetchVehicleForCarteGrise(const QString& matricule);
     bool chercheMat(const QString& matricule, const QString& suppMat = "");
+
 };
 
 #endif // VEHSQL_H
