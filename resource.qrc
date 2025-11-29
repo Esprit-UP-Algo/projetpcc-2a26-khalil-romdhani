@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/bon_etat.png</file>
+        <file>img/bus_stat.png</file>
+        <file>img/en_panne.png</file>
+        <file>img/entretien.png</file>
+        <file>img/excel.png</file>
+        <file>img/image-removebg-preview.png</file>
+        <file>img/login.png</file>
+        <file>img/logo.png</file>
+        <file>img/logo_eqp.png</file>
+        <file>img/mdp.png</file>
+        <file>img/moto_stat.png</file>
+        <file>img/pdf.png</file>
+        <file>img/Screenshot_2025-11-15_103244-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103406-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103429-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103718-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103822-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103947-removebg-preview.png</file>
+        <file>img/stats_veh.png</file>
+        <file>img/truck_stat.png</file>
+        <file>img/WhatsApp Image 2025-11-15 at 14.53.19.jpeg</file>
+    </qresource>
+</RCC>
