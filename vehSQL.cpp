@@ -425,3 +425,95 @@ void vehSQL::rech(QTableWidget* ui_table_ajout_v, const QString& modele)
         row++;
     }
 }
+
+
+int vehSQL::recBonnb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE ETAT_V = 'Bon'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recEntrenb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE ETAT_V = 'Entretien'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recPannenb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE ETAT_V = 'Panne'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recVoiturenb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'Voiture'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recMotonb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'Moto'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recBusnb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'AutoBus'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recCamionnb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'Camion poids lourd'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}

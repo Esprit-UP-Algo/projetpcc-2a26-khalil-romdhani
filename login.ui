@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Login</class>
+ <widget class="QDialog" name="Login">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1549</width>
+    <height>890</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>login</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1501</width>
+     <height>751</height>
+    </rect>
+   </property>
+   <widget class="QFrame" name="barre_nav">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1501</width>
+      <height>761</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#barre_nav {
+	background-color: rgb(0, 85, 127);
+    background-color: #0F2434;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#candidat_btn,
+#vehicule_btn,
+#moniteur_btn,
+#seance_btn,
+#emp_btn,
+#fermer_btn {
+    color: #FBFAF5;
+    background-color: transparent;
+    border: none;
+    padding: 8px 15px;
+    font-weight: bold;
+}
+
+#candidat_btn:hover,
+#vehicule_btn:hover,
+#moniteur_btn:hover,
+#seance_btn:hover,
+#emp_btn:hover,
+#fermer_btn:hover {
+    color: #1D9E3A;
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>80</y>
+       <width>271</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/yyyy/images/logo.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_login">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>230</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_login {
+    color: #FBFAF5;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 4px;
+    background-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}</string>
+     </property>
+     <property name="text">
+      <string>ID d'utilisateur :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_password">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>310</y>
+       <width>161</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_password {
+    color: #FBFAF5;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 4px;
+    background-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}</string>
+     </property>
+     <property name="text">
+      <string>Mot de passe :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="id">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>220</y>
+       <width>341</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#id {
+    border: 1px solid #0F2434;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 13px;
+    background-color: #FBFAF5;
+    color: #0F2434;
+}
+
+#id:focus {
+    border: 2px solid #1D9E3A;
+    background-color: #FFFFFF;
+}</string>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="mdp">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>310</y>
+       <width>341</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#mdp {
+    border: 1px solid #0F2434;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 13px;
+    background-color: #FBFAF5;
+    color: #0F2434;
+}
+
+#mdp:focus {
+    border: 2px solid #1D9E3A;
+    background-color: #FFFFFF;
+}</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::Password</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="motdepassoubli_E">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>380</y>
+       <width>151</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#motdepassoubli_E {
+    background-color: transparent;
+    color: #3498DB;
+    border: none;
+    padding: 4px 8px;
+    font-size: 11px;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+#motdepassoubli_E:hover {
+    color: #2980B9;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 3px;
+}
+
+#motdepassoubli_E:pressed {
+    color: #21618C;
+}</string>
+     </property>
+     <property name="text">
+      <string>Mot de pass oublié?</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="connect">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>440</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#connect {
+    background-color: rgb(29, 158, 58);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 12px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#connect:hover {
+    background-color: #30AA2C;
+    transform: scale(1.05);
+}
+
+#connect:pressed {
+    background-color: #239539;
+    transform: scale(0.98);
+}</string>
+     </property>
+     <property name="text">
+      <string>Se connecter</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_login_2">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>220</y>
+       <width>71</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/new/prefix1/img/icons_prj_cpp/login.png);
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_login_3">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>310</y>
+       <width>81</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/logo/img/icons_prj_cpp/mdp.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_sign">
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>150</y>
+       <width>261</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_sign {
+    color: #FFFFFF;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px 6px;
+    background-color: transparent;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #1D9E3A;
+    margin-bottom: 15px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Veuillez vous identifier</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_login_4">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>40</y>
+       <width>201</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/ res/img/logo.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_password_2">
+     <property name="geometry">
+      <rect>
+       <x>1190</x>
+       <y>550</y>
+       <width>221</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/quantum/img/icons_prj_cpp/logo_eqp.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_team">
+     <property name="geometry">
+      <rect>
+       <x>1220</x>
+       <y>650</y>
+       <width>161</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_team {
+    color: #FBFAF5;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 4px;
+    background-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}</string>
+     </property>
+     <property name="text">
+      <string>Quantum Team</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_74">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>171</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/img/img/logo.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1508</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>16</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

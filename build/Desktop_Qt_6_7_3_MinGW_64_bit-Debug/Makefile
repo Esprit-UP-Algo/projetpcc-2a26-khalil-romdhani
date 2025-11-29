@@ -124,8 +124,6 @@ Makefile: ../../integration.pro C:/Qt/6.7.3/mingw_64/mkspecs/win32-g++/qmake.con
 		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_concurrent.pri \
 		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_concurrent_private.pri \
 		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core.pri \
-		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core5compat.pri \
-		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core5compat_private.pri \
 		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core_private.pri \
 		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_datavisualization.pri \
 		C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
@@ -409,15 +407,30 @@ Makefile: ../../integration.pro C:/Qt/6.7.3/mingw_64/mkspecs/win32-g++/qmake.con
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/yacc.prf \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/lex.prf \
 		../../integration.pro \
+		C:/Qt/6.7.3/mingw_64/lib/Qt6PrintSupport.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Widgets.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Gui.prl \
+		C:/Qt/6.7.3/mingw_64/lib/Qt6Sql.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Core.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6EntryPoint.prl \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/build_pass.prf \
+		../../acceuil.qrc \
+		../../accueil.qrc \
 		../../candidat.qrc \
+		../../candidat_icon.qrc \
+		../../emp_icon.qrc \
 		../../excel.qrc \
 		../../img.qrc \
-		../../pdf.qrc
+		../../img/icons_prj_cpp/mdp.qrc \
+		../../login.qrc \
+		../../logo.qrc \
+		../../logo_eqp.qrc \
+		../../mdp.qrc \
+		../../moniteur_icon.qrc \
+		../../pdf.qrc \
+		../../seance.qrc \
+		../../seance_icon.qrc \
+		../../veh_icon.qrc
 	$(QMAKE) -o Makefile ..\..\integration.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/Qt/6.7.3/mingw_64/mkspecs/features/spec_pre.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/device_config.prf:
@@ -473,8 +486,6 @@ C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_chartsqml_private.pri:
 C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_concurrent.pri:
 C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_concurrent_private.pri:
 C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core.pri:
-C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core5compat.pri:
-C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core5compat_private.pri:
 C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_core_private.pri:
 C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_datavisualization.pri:
 C:/Qt/6.7.3/mingw_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
@@ -758,15 +769,30 @@ C:/Qt/6.7.3/mingw_64/mkspecs/features/exceptions.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/yacc.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/lex.prf:
 ../../integration.pro:
+C:/Qt/6.7.3/mingw_64/lib/Qt6PrintSupport.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Widgets.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Gui.prl:
+C:/Qt/6.7.3/mingw_64/lib/Qt6Sql.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Core.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6EntryPoint.prl:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/build_pass.prf:
+../../acceuil.qrc:
+../../accueil.qrc:
 ../../candidat.qrc:
+../../candidat_icon.qrc:
+../../emp_icon.qrc:
 ../../excel.qrc:
 ../../img.qrc:
+../../img/icons_prj_cpp/mdp.qrc:
+../../login.qrc:
+../../logo.qrc:
+../../logo_eqp.qrc:
+../../mdp.qrc:
+../../moniteur_icon.qrc:
 ../../pdf.qrc:
+../../seance.qrc:
+../../seance_icon.qrc:
+../../veh_icon.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\integration.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

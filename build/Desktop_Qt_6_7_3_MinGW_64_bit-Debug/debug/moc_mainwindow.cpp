@@ -42,7 +42,42 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_candidat_btn_clicked",
     "on_seance_btn_clicked",
     "on_emp_btn_clicked",
-    "on_moniteur_btn_clicked"
+    "on_moniteur_btn_clicked",
+    "on_accueil_clicked",
+    "on_vehicule_clicked",
+    "on_candidat_clicked",
+    "on_seance_clicked",
+    "on_emp_clicked",
+    "on_moniteur_clicked",
+    "on_confirm_ajout_s_clicked",
+    "on_confirm_s_clicked",
+    "on_tab_s_clicked",
+    "QModelIndex",
+    "index",
+    "on_filtre_s_clicked",
+    "on_tri_s_currentIndexChanged",
+    "on_exp_s_clicked",
+    "on_supp_s_clicked",
+    "on_reins_s_clicked",
+    "on_enregistrer_m_clicked",
+    "on_reinstaller_mon_clicked",
+    "on_tab_mon_doubleClicked",
+    "on_supp_m_clicked",
+    "on_expo_tab_m_clicked",
+    "on_modifier_m_clicked",
+    "on_tab_mon_cellChanged",
+    "row",
+    "column",
+    "on_enregistrer_c_clicked",
+    "on_modifier_c_clicked",
+    "on_table_candidat_doubleClicked",
+    "on_supp_c_clicked",
+    "on_expo_tab_c_clicked",
+    "on_conf_rech_c_clicked",
+    "onFiltrerChanged",
+    "filterText",
+    "onTrierChanged",
+    "sortText"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -55,7 +90,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      35,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,12 +98,41 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    0,   54,    2, 0x08,    5 /* Private */,
-       7,    0,   55,    2, 0x08,    6 /* Private */,
+       1,    0,  224,    2, 0x08,    1 /* Private */,
+       3,    0,  225,    2, 0x08,    2 /* Private */,
+       4,    0,  226,    2, 0x08,    3 /* Private */,
+       5,    0,  227,    2, 0x08,    4 /* Private */,
+       6,    0,  228,    2, 0x08,    5 /* Private */,
+       7,    0,  229,    2, 0x08,    6 /* Private */,
+       8,    0,  230,    2, 0x08,    7 /* Private */,
+       9,    0,  231,    2, 0x08,    8 /* Private */,
+      10,    0,  232,    2, 0x08,    9 /* Private */,
+      11,    0,  233,    2, 0x08,   10 /* Private */,
+      12,    0,  234,    2, 0x08,   11 /* Private */,
+      13,    0,  235,    2, 0x08,   12 /* Private */,
+      14,    0,  236,    2, 0x08,   13 /* Private */,
+      15,    0,  237,    2, 0x08,   14 /* Private */,
+      16,    1,  238,    2, 0x08,   15 /* Private */,
+      19,    0,  241,    2, 0x08,   17 /* Private */,
+      20,    1,  242,    2, 0x08,   18 /* Private */,
+      21,    0,  245,    2, 0x08,   20 /* Private */,
+      22,    0,  246,    2, 0x08,   21 /* Private */,
+      23,    0,  247,    2, 0x08,   22 /* Private */,
+      24,    0,  248,    2, 0x08,   23 /* Private */,
+      25,    0,  249,    2, 0x08,   24 /* Private */,
+      26,    1,  250,    2, 0x08,   25 /* Private */,
+      27,    0,  253,    2, 0x08,   27 /* Private */,
+      28,    0,  254,    2, 0x08,   28 /* Private */,
+      29,    0,  255,    2, 0x08,   29 /* Private */,
+      30,    2,  256,    2, 0x08,   30 /* Private */,
+      33,    0,  261,    2, 0x08,   33 /* Private */,
+      34,    0,  262,    2, 0x08,   34 /* Private */,
+      35,    1,  263,    2, 0x08,   35 /* Private */,
+      36,    0,  266,    2, 0x08,   37 /* Private */,
+      37,    0,  267,    2, 0x08,   38 /* Private */,
+      38,    0,  268,    2, 0x08,   39 /* Private */,
+      39,    1,  269,    2, 0x08,   40 /* Private */,
+      41,    1,  272,    2, 0x08,   42 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -77,6 +141,35 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 17,   18,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 17,   18,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   31,   32,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 17,   18,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   40,
+    QMetaType::Void, QMetaType::QString,   42,
 
        0        // eod
 };
@@ -101,7 +194,73 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_emp_btn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_moniteur_btn_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_accueil_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_vehicule_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_candidat_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_seance_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_emp_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_moniteur_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_confirm_ajout_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_confirm_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_tab_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>,
+        // method 'on_filtre_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_tri_s_currentIndexChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_exp_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_supp_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_reins_s_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_enregistrer_m_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_reinstaller_mon_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_tab_mon_doubleClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>,
+        // method 'on_supp_m_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_expo_tab_m_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_modifier_m_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_tab_mon_cellChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_enregistrer_c_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_modifier_c_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_table_candidat_doubleClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>,
+        // method 'on_supp_c_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_expo_tab_c_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_conf_rech_c_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onFiltrerChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'onTrierChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -118,10 +277,38 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->on_seance_btn_clicked(); break;
         case 4: _t->on_emp_btn_clicked(); break;
         case 5: _t->on_moniteur_btn_clicked(); break;
+        case 6: _t->on_accueil_clicked(); break;
+        case 7: _t->on_vehicule_clicked(); break;
+        case 8: _t->on_candidat_clicked(); break;
+        case 9: _t->on_seance_clicked(); break;
+        case 10: _t->on_emp_clicked(); break;
+        case 11: _t->on_moniteur_clicked(); break;
+        case 12: _t->on_confirm_ajout_s_clicked(); break;
+        case 13: _t->on_confirm_s_clicked(); break;
+        case 14: _t->on_tab_s_clicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 15: _t->on_filtre_s_clicked(); break;
+        case 16: _t->on_tri_s_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 17: _t->on_exp_s_clicked(); break;
+        case 18: _t->on_supp_s_clicked(); break;
+        case 19: _t->on_reins_s_clicked(); break;
+        case 20: _t->on_enregistrer_m_clicked(); break;
+        case 21: _t->on_reinstaller_mon_clicked(); break;
+        case 22: _t->on_tab_mon_doubleClicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 23: _t->on_supp_m_clicked(); break;
+        case 24: _t->on_expo_tab_m_clicked(); break;
+        case 25: _t->on_modifier_m_clicked(); break;
+        case 26: _t->on_tab_mon_cellChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 27: _t->on_enregistrer_c_clicked(); break;
+        case 28: _t->on_modifier_c_clicked(); break;
+        case 29: _t->on_table_candidat_doubleClicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 30: _t->on_supp_c_clicked(); break;
+        case 31: _t->on_expo_tab_c_clicked(); break;
+        case 32: _t->on_conf_rech_c_clicked(); break;
+        case 33: _t->onFiltrerChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 34: _t->onTrierChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -143,13 +330,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 35)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 35;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 35)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 35;
     }
     return _id;
 }
