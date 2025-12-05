@@ -9,9 +9,41 @@
 #include <QRadioButton>
 #include <QDateEdit>
 #include <QTableWidget>
+#include <QHeaderView>
 
 vehSQL::vehSQL(QObject* parent) : QObject(parent)
 {
+}
+
+void vehSQL::refTab(QTableWidget* ui_table_ajout_v)
+{
+    if(!ui_table_ajout_v) return;
+
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) {
+        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
+        return;
+    }
+
+    QSqlQuery query("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, TO_CHAR(ANNEE_V, 'YYYY-MM-DD'), ETAT_V, KILOMETRAGE_V, TO_CHAR(DATE_MAINT_V, 'YYYY-MM-DD') FROM VEHICULES");
+
+    ui_table_ajout_v->setRowCount(0);
+    ui_table_ajout_v->setColumnCount(8);
+    QStringList headers;
+    headers << "Matricule" << "Type" << "Marque" << "Modele" << "Annee" << "Etat" << "Kilometrage" << "Date Maintenance";
+    ui_table_ajout_v->setHorizontalHeaderLabels(headers);
+
+    int row = 0;
+    while(query.next()) {
+        ui_table_ajout_v->insertRow(row);
+        for(int col = 0; col < 8; col++) {
+            QTableWidgetItem* item = new QTableWidgetItem(query.value(col).toString());
+            ui_table_ajout_v->setItem(row, col, item);
+        }
+        row++;
+    }
+
+    ui_table_ajout_v->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void vehSQL::ConfV(QLineEdit* ui_matricule, QComboBox* ui_type_v, QLineEdit* ui_marque_v,
@@ -222,145 +254,6 @@ QString vehSQL::tabClick(const QModelIndex &index, QLineEdit* ui_matricule, QCom
     return matricule;
 }
 
-void vehSQL::refTab(QTableWidget* ui_table_ajout_v)
-{
-    if(!ui_table_ajout_v) return;
-
-    Connection* conn = Connection::instance();
-    if(!conn->createconnect()) {
-        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
-        return;
-    }
-
-    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui_table_ajout_v->setRowCount(0);
-    QSqlQuery query("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES");
-    int row = 0;
-    while(query.next()) {
-        ui_table_ajout_v->insertRow(row);
-        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
-        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
-        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
-        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
-        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
-        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
-        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
-        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
-        row++;
-    }
-}
-
-void vehSQL::filtrerTab(QTableWidget* ui_table_ajout_v, const QString& filtre, const QString& tri)
-{
-    if(!ui_table_ajout_v) return;
-
-    Connection* conn = Connection::instance();
-    if(!conn->createconnect()) {
-        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
-        return;
-    }
-
-    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui_table_ajout_v->setRowCount(0);
-
-    QSqlQuery query;
-    QString sqlQuery;
-
-    if(filtre == "Tous" || filtre.isEmpty()) {
-        sqlQuery = "SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES";
-    } else {
-        sqlQuery = "SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES WHERE TYPE_V = :type";
-    }
-
-    if(!tri.isEmpty() && tri != "Trier par") {
-        if(tri == "Année croissante") {
-            sqlQuery += " ORDER BY ANNEE_V ASC";
-        } else if(tri == "Année décroissante") {
-            sqlQuery += " ORDER BY ANNEE_V DESC";
-        } else if(tri == "Kilométrage croissant") {
-            sqlQuery += " ORDER BY KILOMETRAGE_V ASC";
-        } else if(tri == "Kilométrage décroissant") {
-            sqlQuery += " ORDER BY KILOMETRAGE_V DESC";
-        }
-    } else {
-        sqlQuery += " ORDER BY MATRICULE";
-    }
-
-    query.prepare(sqlQuery);
-    if(!filtre.isEmpty() && filtre != "Tous") {
-        query.bindValue(":type", filtre);
-    }
-
-    if(!query.exec()) {
-        QMessageBox::warning(nullptr, "erreur", "erreur lors du filtrage: " + query.lastError().text());
-        return;
-    }
-
-    int row = 0;
-    while(query.next()) {
-        ui_table_ajout_v->insertRow(row);
-        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
-        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
-        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
-        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
-        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
-        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
-        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
-        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
-        row++;
-    }
-}
-
-void vehSQL::trierTab(QTableWidget* ui_table_ajout_v, const QString& critere)
-{
-    if(!ui_table_ajout_v) return;
-
-    Connection* conn = Connection::instance();
-    if(!conn->createconnect()) {
-        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
-        return;
-    }
-
-    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui_table_ajout_v->setRowCount(0);
-
-    QSqlQuery query;
-    QString sqlQuery = "SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES";
-
-    if(critere == "Année croissante") {
-        sqlQuery += " ORDER BY ANNEE_V ASC";
-    } else if(critere == "Année décroissante") {
-        sqlQuery += " ORDER BY ANNEE_V DESC";
-    } else if(critere == "Kilométrage croissant") {
-        sqlQuery += " ORDER BY KILOMETRAGE_V ASC";
-    } else if(critere == "Kilométrage décroissant") {
-        sqlQuery += " ORDER BY KILOMETRAGE_V DESC";
-    } else {
-        sqlQuery += " ORDER BY MATRICULE";
-    }
-
-    query.prepare(sqlQuery);
-
-    if(!query.exec()) {
-        QMessageBox::warning(nullptr, "erreur", "erreur lors du tri: " + query.lastError().text());
-        return;
-    }
-
-    int row = 0;
-    while(query.next()) {
-        ui_table_ajout_v->insertRow(row);
-        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
-        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
-        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
-        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
-        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
-        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
-        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
-        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
-        row++;
-    }
-}
-
 bool vehSQL::chercheMat(const QString& matricule, const QString& suppMat)
 {
     Connection* conn = Connection::instance();
@@ -384,44 +277,177 @@ bool vehSQL::chercheMat(const QString& matricule, const QString& suppMat)
     return false;
 }
 
-void vehSQL::rech(QTableWidget* ui_table_ajout_v, const QString& modele)
+int vehSQL::recBonnb()
 {
-    if(!ui_table_ajout_v) return;
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE ETAT_V = 'Bon'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recEntrenb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE ETAT_V = 'Entretien'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recPannenb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE ETAT_V = 'Panne'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recVoiturenb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'Voiture'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recMotonb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'Moto'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recBusnb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'AutoBus'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+int vehSQL::recCamionnb()
+{
+    Connection* conn = Connection::instance();
+    if(!conn->createconnect()) return 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM VEHICULES WHERE TYPE_V = 'Camion poids lourd'");
+    if(query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}
+
+QMap<QString, QVariant> vehSQL::fetchVehicleForCarteGrise(const QString& matricule)
+{
+    QMap<QString, QVariant> vehicleData;
 
     Connection* conn = Connection::instance();
     if(!conn->createconnect()) {
-        QMessageBox::warning(nullptr, "erreur", "connexion a la base de donnees echouee");
-        return;
+        return vehicleData;
     }
-
-    ui_table_ajout_v->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui_table_ajout_v->setRowCount(0);
 
     QSqlQuery query;
+    query.prepare("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V FROM VEHICULES WHERE MATRICULE = :matricule");
+    query.bindValue(":matricule", matricule);
 
-    if(modele.isEmpty()) {
-        query.prepare("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES");
+    if(query.exec() && query.next()) {
+        vehicleData["matricule"] = query.value(0).toString();
+        vehicleData["type"] = query.value(1).toString();
+        vehicleData["marque"] = query.value(2).toString();
+        vehicleData["modele"] = query.value(3).toString();
+        vehicleData["date_achat"] = query.value(4).toDate();
+    }
+
+    return vehicleData;
+}
+
+
+
+//teb3a seance
+QSqlQueryModel* vehSQL::getVehiculesDisponibles()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT MATRICULE, MARQUE_V || ' ' || MODELE_V as VEHICULE FROM VEHICULES WHERE UPPER(TRIM(ETAT_V)) = 'BON' ORDER BY MARQUE_V, MODELE_V");
+
+    if (model->lastError().isValid()) {
+        qDebug() << "❌ Erreur récupération véhicules disponibles:" << model->lastError().text();
     } else {
-        query.prepare("SELECT MATRICULE, TYPE_V, MARQUE_V, MODELE_V, ANNEE_V, ETAT_V, KILOMETRAGE_V, DATE_MAINT_V FROM VEHICULES WHERE UPPER(MODELE_V) LIKE UPPER(:modele)");
-        query.bindValue(":modele", "%" + modele + "%");
+        qDebug() << "✅ Véhicules disponibles trouvés:" << model->rowCount();
     }
 
-    if(!query.exec()) {
-        QMessageBox::warning(nullptr, "erreur", "erreur lors de la recherche: " + query.lastError().text());
-        return;
+    return model;
+}
+
+// ✅ Récupérer les véhicules disponibles pour une date/heure spécifique (exclut ceux déjà utilisés)
+QSqlQueryModel* vehSQL::getVehiculesDisponibles(const QDate& date, const QString& heureDebut, const QString& heureFin, int idSeanceExclue)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QString dateStr = date.toString("dd/MM/yyyy");
+
+    QString queryStr = "SELECT MATRICULE, MARQUE_V || ' ' || MODELE_V as VEHICULE "
+                       "FROM VEHICULES v "
+                       "WHERE UPPER(TRIM(v.ETAT_V)) = 'BON' "
+                       "AND v.MATRICULE NOT IN ("
+                       "    SELECT s.MATRICULE "
+                       "    FROM SEANCES s "
+                       "    WHERE TO_CHAR(s.DATE_S, 'DD/MM/YYYY') = :date "
+                       "    AND s.ID_SEANCE != :idExclu "
+                       "    AND s.MATRICULE IS NOT NULL "
+                       "    AND ("
+                       "        (:debut < s.HEURE_FIN_S AND :fin > s.HEURE_DEBUT_S)"
+                       "    )"
+                       ") "
+                       "ORDER BY MARQUE_V, MODELE_V";
+
+    QSqlQuery query;
+    query.prepare(queryStr);
+    query.bindValue(":date", dateStr);
+    query.bindValue(":debut", heureDebut);
+    query.bindValue(":fin", heureFin);
+    query.bindValue(":idExclu", idSeanceExclue);
+
+    if (!query.exec()) {
+        qDebug() << "❌ Erreur récupération véhicules disponibles (avec filtre):" << query.lastError().text();
+        // En cas d'erreur, retourner la version simple
+        return getVehiculesDisponibles();
     }
 
-    int row = 0;
-    while(query.next()) {
-        ui_table_ajout_v->insertRow(row);
-        ui_table_ajout_v->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
-        ui_table_ajout_v->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
-        ui_table_ajout_v->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
-        ui_table_ajout_v->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
-        ui_table_ajout_v->setItem(row, 4, new QTableWidgetItem(query.value(4).toString()));
-        ui_table_ajout_v->setItem(row, 5, new QTableWidgetItem(query.value(5).toString()));
-        ui_table_ajout_v->setItem(row, 6, new QTableWidgetItem(query.value(6).toString()));
-        ui_table_ajout_v->setItem(row, 7, new QTableWidgetItem(query.value(7).toString()));
-        row++;
+    model->setQuery(std::move(query));
+
+    if (model->lastError().isValid()) {
+        qDebug() << "❌ Erreur récupération véhicules disponibles:" << model->lastError().text();
     }
+
+    return model;
 }

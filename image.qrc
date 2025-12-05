@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>img/bon_etat.png</file>
+        <file>img/bus_stat.png</file>
+        <file>img/carte_grise.png</file>
+        <file>img/en_panne.png</file>
+        <file>img/entretien.png</file>
+        <file>img/excel.png</file>
+        <file>img/image-removebg-preview.png</file>
+        <file>img/login.png</file>
+        <file>img/logo.png</file>
+        <file>img/logo_eqp.png</file>
+        <file>img/mdp.png</file>
+        <file>img/moto_stat.png</file>
+        <file>img/pdf.png</file>
+        <file>img/Screenshot_2025-11-15_103244-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103406-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103429-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103718-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103822-removebg-preview.png</file>
+        <file>img/Screenshot_2025-11-15_103947-removebg-preview.png</file>
+        <file>img/stats_veh.png</file>
+        <file>img/tn.png</file>
+        <file>img/truck_stat.png</file>
+        <file>img/logo_png.png</file>
+        <file>img/fonc.png</file>
+        <file>img/form.png</file>
+        <file>img/calendar.png</file>
+        <file>img/chatbot.png</file>
+        <file>img/history.png</file>
+        <file>img/maps.png</file>
+        <file>img/progress.png</file>
+    </qresource>
+</RCC>
