@@ -648,7 +648,7 @@ QLabel#titleLabel {
           <string>Exporter</string>
          </property>
          <property name="icon">
-          <iconset resource="pdf.qrc">
+          <iconset>
            <normaloff>:/pdf/img/pdf.png</normaloff>:/pdf/img/pdf.png</iconset>
          </property>
         </widget>
@@ -1854,7 +1854,7 @@ QLabel#titleLabel {
           <string> Exporter</string>
          </property>
          <property name="icon">
-          <iconset resource="pdf.qrc">
+          <iconset>
            <normaloff>:/pdf/img/pdf.png</normaloff>:/pdf/img/pdf.png</iconset>
          </property>
         </widget>
@@ -2735,7 +2735,7 @@ QPushButton:pressed {
           <string> Exporter</string>
          </property>
          <property name="icon">
-          <iconset resource="excel.qrc">
+          <iconset>
            <normaloff>:/res2/img/excel.png</normaloff>:/res2/img/excel.png</iconset>
          </property>
         </widget>
@@ -3606,9 +3606,9 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
+        <y>10</y>
         <width>1271</width>
-        <height>641</height>
+        <height>690</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -3627,45 +3627,62 @@ QPushButton:hover {
       <widget class="QTabWidget" name="tab_widget_c">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>1101</width>
-         <height>581</height>
+         <x>30</x>
+         <y>3</y>
+         <width>1171</width>
+         <height>680</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QTabWidget#tab_widget_c {
     background-color: #FBFAF5;
-    border: 3px solid #0F2434;
-    border-top: 5px solid #1E90FF;
-    border-radius: 8px;
+    border: 2px solid #0F2434;
+    border-radius: 10px;
 }
 
 QTabWidget#tab_widget_c::pane {
-    border: 1px solid #0F2434;
+    border: 1px solid #C0C0C0;
     background-color: #FBFAF5;
-    border-radius: 6px;
+    border-radius: 8px;
+    margin-top: -1px;
+    padding: 15px;
 }
 
 QTabWidget#tab_widget_c QTabBar::tab {
     background-color: #0F2434;
     color: #FBFAF5;
-    padding: 8px 16px;
-    margin: 2px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    padding: 12px 24px;
+    margin-right: 2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #0F2434;
+    border-bottom: none;
 }
 
 QTabWidget#tab_widget_c QTabBar::tab:selected {
     background-color: #1D9E3A;
-    color: #FBFAF5;
-    border-bottom: 2px solid #1D9E3A;
+    color: #FFFFFF;
+    border: 1px solid #1D9E3A;
+    border-bottom: none;
 }
 
-QTabWidget#tab_widget_c QTabBar::tab:hover {
-    background-color: #1D9E3A;
-    color: #FBFAF5;
+QTabWidget#tab_widget_c QTabBar::tab:hover:!selected {
+    background-color: #2a4a6a;
+    color: #FFFFFF;
+}
+
+QTabWidget#tab_widget_c QTabBar::tab:first {
+    margin-left: 0px;
+}
+
+QTabWidget#tab_widget_c QTabBar::tab:last {
+    margin-right: 0px;
+}
+
+QTabWidget#tab_widget_c QTabBar {
+    qproperty-drawBase: 0;
 }</string>
        </property>
        <property name="currentIndex">
@@ -3678,63 +3695,37 @@ QTabWidget#tab_widget_c QTabBar::tab:hover {
         <widget class="QPushButton" name="conf_rech_c">
          <property name="geometry">
           <rect>
-           <x>610</x>
-           <y>16</y>
+           <x>510</x>
+           <y>10</y>
            <width>131</width>
-           <height>31</height>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">#conf_rech_c {
-    background-color: #1D9E3A;
-    color: #FBFAF5;
+    background-color: #228B22;
     border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 4px;
     font-weight: bold;
 }
 
 #conf_rech_c:hover {
-    background-color: #30AA2C;
-}
-
-#conf_rech_c:pressed {
-    background-color: #239539;
-}
-</string>
+    background-color: #228B22;
+}</string>
          </property>
          <property name="text">
           <string>🔍 Confirmer</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_23">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>301</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(0, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>📋Gestion des candidats</string>
          </property>
         </widget>
         <widget class="QGroupBox" name="groupBoxc">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>50</y>
+           <y>16</y>
            <width>300</width>
-           <height>480</height>
+           <height>581</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -3785,7 +3776,7 @@ QLabel#titleLabel {
 }</string>
           </property>
           <property name="text">
-           <string>ID :</string>
+           <string>Cin : :</string>
           </property>
          </widget>
          <widget class="QLineEdit" name="id_c">
@@ -4088,8 +4079,8 @@ QLabel#titleLabel {
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>428</y>
-            <width>130</width>
+            <y>531</y>
+            <width>140</width>
             <height>40</height>
            </rect>
           </property>
@@ -4394,12 +4385,70 @@ QLabel#titleLabel {
            <string>Parc</string>
           </property>
          </widget>
+         <widget class="QPushButton" name="modifier_c">
+          <property name="geometry">
+           <rect>
+            <x>160</x>
+            <y>533</y>
+            <width>120</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#modifier_c {
+    background-color: #1D9E3A;
+    color: #FBFAF5;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+#modifier_c:hover {
+    background-color: #30AA2C;
+}
+
+#modifier_c:pressed {
+    background-color: #239539;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Modifier ✏️</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="Photobtn_c">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>470</y>
+            <width>93</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="Photoaff_c">
+          <property name="geometry">
+           <rect>
+            <x>122</x>
+            <y>429</y>
+            <width>151</width>
+            <height>91</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </widget>
         <widget class="QComboBox" name="filtrer_c">
          <property name="geometry">
           <rect>
-           <x>750</x>
-           <y>8</y>
+           <x>650</x>
+           <y>10</y>
            <width>144</width>
            <height>40</height>
           </rect>
@@ -4430,16 +4479,26 @@ QLabel#titleLabel {
          </item>
          <item>
           <property name="text">
-           <string>ID</string>
+           <string>Code</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Conduite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Parc</string>
           </property>
          </item>
         </widget>
         <widget class="QComboBox" name="trier_c">
          <property name="geometry">
           <rect>
-           <x>916</x>
+           <x>800</x>
            <y>10</y>
-           <width>120</width>
+           <width>211</width>
            <height>40</height>
           </rect>
          </property>
@@ -4469,42 +4528,47 @@ QLabel#titleLabel {
          </item>
          <item>
           <property name="text">
-           <string>Nom</string>
+           <string>Nom croissant</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Date naissance</string>
+           <string>Nom décroissant</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Date naissance croissante</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Date naissance décroissante</string>
           </property>
          </item>
         </widget>
         <widget class="QPushButton" name="supp_c">
          <property name="geometry">
           <rect>
-           <x>480</x>
-           <y>470</y>
-           <width>121</width>
-           <height>31</height>
+           <x>320</x>
+           <y>450</y>
+           <width>141</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">#supp_c {
-    background-color: #1D9E3A;
-    color: #FBFAF5;
+    background-color: #DC3545;
     border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 4px;
     font-weight: bold;
 }
 
 #supp_c:hover {
-    background-color: #30AA2C;
-}
-
-#supp_c:pressed {
-    background-color: #239539;
-}
-</string>
+    background-color: #C82333;
+}</string>
          </property>
          <property name="text">
           <string>Supprimer 🗑️</string>
@@ -4513,14 +4577,14 @@ QLabel#titleLabel {
         <widget class="QLineEdit" name="taper_c">
          <property name="geometry">
           <rect>
-           <x>410</x>
+           <x>330</x>
            <y>10</y>
-           <width>190</width>
+           <width>171</width>
            <height>40</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">#taper {
+          <string notr="true">#taper_c {
     border: 2px solid #0F2434;
     border-radius: 6px;
     padding: 6px 10px;
@@ -4530,7 +4594,7 @@ QLabel#titleLabel {
     selection-color: #FBFAF5;
 }
 
-#taper:focus {
+#taper_c:focus {
     border: 2px solid #1D9E3A;
 }
 </string>
@@ -4539,16 +4603,16 @@ QLabel#titleLabel {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>  Recherche</string>
+          <string>  Rechercher</string>
          </property>
         </widget>
         <widget class="QTableWidget" name="table_candidat">
          <property name="geometry">
           <rect>
-           <x>370</x>
+           <x>320</x>
            <y>60</y>
-           <width>681</width>
-           <height>381</height>
+           <width>810</width>
+           <height>380</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -4671,28 +4735,24 @@ QLabel#titleLabel {
         <widget class="QPushButton" name="expo_tab_c">
          <property name="geometry">
           <rect>
-           <x>610</x>
-           <y>470</y>
-           <width>121</width>
-           <height>31</height>
+           <x>470</x>
+           <y>450</y>
+           <width>141</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">#expo_tab_c {
-    background-color: #1D9E3A;
-    color: #FBFAF5;
+    background-color:  #228B22;
     border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 4px;
     font-weight: bold;
 }
 
 #expo_tab_c:hover {
-    background-color: #30AA2C;
-}
-
-#expo_tab_c:pressed {
-    background-color: #239539;
+    background-color: #228B22;
 }
 </string>
          </property>
@@ -4700,40 +4760,62 @@ QLabel#titleLabel {
           <string> Exporter</string>
          </property>
          <property name="icon">
-          <iconset resource="excel.qrc">
+          <iconset>
            <normaloff>:/res2/img/excel.png</normaloff>:/res2/img/excel.png</iconset>
          </property>
         </widget>
-        <widget class="QPushButton" name="modifier_c">
+        <widget class="QLabel" name="label_56">
          <property name="geometry">
           <rect>
-           <x>360</x>
-           <y>470</y>
-           <width>110</width>
-           <height>31</height>
+           <x>10</x>
+           <y>20</y>
+           <width>41</width>
+           <height>41</height>
           </rect>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">#modifier_c {
-    background-color: #1D9E3A;
-    color: #FBFAF5;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
-    font-weight: bold;
-}
-
-#modifier_c:hover {
-    background-color: #30AA2C;
-}
-
-#modifier_c:pressed {
-    background-color: #239539;
-}
-</string>
+          <string notr="true">
+image: url(:/candidat_icon/img/icons_prj_cpp/Screenshot_2025-11-15_103429-removebg-preview.png);</string>
          </property>
          <property name="text">
-          <string>Modifier ✏️</string>
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_66">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>-15</y>
+           <width>201</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>-1</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: rgb(0, 0, 0);
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size:  20px;
+    font-weight: bold;
+    padding: 4px 6px;
+    background: transparent;
+    border: none;
+    margin: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Gestion Candidats</string>
          </property>
         </widget>
        </widget>
@@ -4744,10 +4826,10 @@ QLabel#titleLabel {
         <widget class="QTabWidget" name="tab_widget2_c">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>990</width>
-           <height>480</height>
+           <x>20</x>
+           <y>30</y>
+           <width>1101</width>
+           <height>501</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -4785,51 +4867,20 @@ QLabel#titleLabel {
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab_7">
           <attribute name="title">
            <string>Statistiques</string>
           </attribute>
-          <widget class="QComboBox" name="selon_stat_c">
+          <widget class="QLabel" name="aff_stat_c">
            <property name="geometry">
             <rect>
-             <x>850</x>
-             <y>20</y>
-             <width>100</width>
-             <height>40</height>
+             <x>240</x>
+             <y>30</y>
+             <width>570</width>
+             <height>391</height>
             </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <item>
-            <property name="text">
-             <string>Selon</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Age</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Nivaeu permis</string>
-            </property>
-           </item>
-          </widget>
-          <widget class="QLabel" name="label_49">
-           <property name="geometry">
-            <rect>
-             <x>50</x>
-             <y>10</y>
-             <width>580</width>
-             <height>390</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">image: url(:/new/prefix2/img/Un diagramme en barr.png);</string>
            </property>
            <property name="text">
             <string/>
@@ -4915,20 +4966,32 @@ QLabel#titleLabel {
             <string>Progress bar :</string>
            </property>
           </widget>
-          <widget class="QLabel" name="label_48">
+          <widget class="QProgressBar" name="progressBar_c">
            <property name="geometry">
             <rect>
-             <x>190</x>
-             <y>100</y>
-             <width>620</width>
-             <height>280</height>
+             <x>260</x>
+             <y>160</y>
+             <width>510</width>
+             <height>90</height>
             </rect>
            </property>
-           <property name="styleSheet">
-            <string notr="true">image: url(:/new/prefix1/img/Barre de progression.png);</string>
+           <property name="value">
+            <number>24</number>
            </property>
-           <property name="text">
-            <string/>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_20">
+          <attribute name="title">
+           <string>Historique</string>
+          </attribute>
+          <widget class="QListWidget" name="his_c">
+           <property name="geometry">
+            <rect>
+             <x>55</x>
+             <y>21</y>
+             <width>941</width>
+             <height>411</height>
+            </rect>
            </property>
           </widget>
          </widget>
@@ -5626,7 +5689,7 @@ QLabel#titleLabel {
           <string> Exporter</string>
          </property>
          <property name="icon">
-          <iconset resource="excel.qrc">
+          <iconset>
            <normaloff>:/res2/img/excel.png</normaloff>:/res2/img/excel.png</iconset>
          </property>
         </widget>
@@ -5940,7 +6003,7 @@ text-decoration: underline;</string>
             <string> Exporter</string>
            </property>
            <property name="icon">
-            <iconset resource="excel.qrc">
+            <iconset>
              <normaloff>:/res2/img/excel.png</normaloff>:/res2/img/excel.png</iconset>
            </property>
           </widget>
@@ -5957,7 +6020,7 @@ text-decoration: underline;</string>
       <x>10</x>
       <y>90</y>
       <width>200</width>
-      <height>641</height>
+      <height>661</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -6150,9 +6213,6 @@ text-decoration: underline;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="excel.qrc"/>
-  <include location="pdf.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

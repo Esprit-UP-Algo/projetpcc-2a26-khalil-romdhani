@@ -22,4 +22,4 @@ private:
     QSqlDatabase db;
 };
 
-#endif // CONNECTION_H
+#endif
