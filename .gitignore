@@ -1,0 +1,14 @@
+# API Keys and sensitive data
+config.json
+*.env
+secrets/
+api_keys/
+
+# Build files
+build/
+*.pro.user
+*.autosave
+
+# Qt specific
+Makefile*
+*.app
