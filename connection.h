@@ -11,13 +11,13 @@ class Connection
 public:
     static Connection* instance();
     bool createconnect();
+    QSqlDatabase getDb() const { return db; }
 
 private:
     Connection();
     ~Connection();
     Connection(const Connection&) = delete;
     Connection& operator=(const Connection&) = delete;
-
     static Connection* p_instance;
     QSqlDatabase db;
 };

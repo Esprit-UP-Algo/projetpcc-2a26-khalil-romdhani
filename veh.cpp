@@ -1,10 +1,10 @@
 #include "veh.h"
 #include "vehSQL.h"
+#include "vehChart.h"
 #include <QMessageBox>
 #include <QRegularExpression>
-#include <QPrinter>
-#include <QPainter>
-#include <QFileDialog>
+#include <QVBoxLayout>
+#include "cartegrisedialog.h"
 
 veh::veh()
 {
@@ -19,11 +19,78 @@ veh::veh()
     ui_date_achat_v = nullptr;
     ui_date_maint_v = nullptr;
     ui_table_ajout_v = nullptr;
-    ui_filtrer_v = nullptr;
-    ui_trier_v = nullptr;
-    ui_taper_v = nullptr;
+    ui_type_stat = nullptr;
+    ui_etat_stat = nullptr;
     currM = "";
     sqli = new vehSQL(this);
+    ui_matricule_carte = nullptr;
+}
+
+void veh::initV(QLineEdit* matricule, QComboBox* type_v, QLineEdit* marque_v,
+                QLineEdit* modele_v, QLineEdit* kilometrage_v, QRadioButton* bon,
+                QRadioButton* entretien, QRadioButton* panne, QDateEdit* date_achat_v,
+                QDateEdit* date_maint_v, QGroupBox* type_stat, QGroupBox* etat_stat)
+{
+    this->ui_matricule = matricule;
+    this->ui_type_v = type_v;
+    this->ui_marque_v = marque_v;
+    this->ui_modele_v = modele_v;
+    this->ui_kilometrage_v = kilometrage_v;
+    this->ui_bon = bon;
+    this->ui_entretien = entretien;
+    this->ui_panne = panne;
+    this->ui_date_achat_v = date_achat_v;
+    this->ui_date_maint_v = date_maint_v;
+    this->ui_type_stat = type_stat;
+    this->ui_etat_stat = etat_stat;
+}
+
+void veh::refreshCharts()
+{
+    if (!ui_type_stat || !ui_etat_stat) return;
+
+    if (ui_type_stat) {
+        QLayout* typeLayout = ui_type_stat->layout();
+        if (typeLayout) {
+            QLayoutItem* item;
+            while ((item = typeLayout->takeAt(0)) != nullptr) {
+                if (item->widget()) {
+                    item->widget()->deleteLater();
+                }
+                delete item;
+            }
+        }
+    }
+
+    if (ui_etat_stat) {
+        QLayout* etatLayout = ui_etat_stat->layout();
+        if (etatLayout) {
+            QLayoutItem* item;
+            while ((item = etatLayout->takeAt(0)) != nullptr) {
+                if (item->widget()) {
+                    item->widget()->deleteLater();
+                }
+                delete item;
+            }
+        }
+    }
+
+    vehChart* chartManager = new vehChart(this);
+
+    QChartView* typeChart = chartManager->createTypeChart();
+    QChartView* etatChart = chartManager->createEtatChart();
+
+    QLayout* typeLayout = ui_type_stat->layout();
+    if(!typeLayout) {
+        typeLayout = new QVBoxLayout(ui_type_stat);
+    }
+    typeLayout->addWidget(typeChart);
+
+    QLayout* etatLayout = ui_etat_stat->layout();
+    if(!etatLayout) {
+        etatLayout = new QVBoxLayout(ui_etat_stat);
+    }
+    etatLayout->addWidget(etatChart);
 }
 
 bool veh::verifV(const QString& matricule, const QString& type, const QString& marque,
@@ -32,7 +99,7 @@ bool veh::verifV(const QString& matricule, const QString& type, const QString& m
 {
     if(!verifMat(matricule))
     {
-        QMessageBox::warning(nullptr, "erreur", "verifier matricule");
+        QMessageBox::warning(nullptr, "erreur", "verifier matricule, doit etre sous la forme %%%%TN%%");
         return false;
     }
     if(type == "Choisir")
@@ -150,23 +217,6 @@ bool veh::verifKm(const QString& km)
     return true;
 }
 
-void veh::initV(QLineEdit* matricule, QComboBox* type_v, QLineEdit* marque_v,
-                QLineEdit* modele_v, QLineEdit* kilometrage_v, QRadioButton* bon,
-                QRadioButton* entretien, QRadioButton* panne, QDateEdit* date_achat_v,
-                QDateEdit* date_maint_v)
-{
-    this->ui_matricule = matricule;
-    this->ui_type_v = type_v;
-    this->ui_marque_v = marque_v;
-    this->ui_modele_v = modele_v;
-    this->ui_kilometrage_v = kilometrage_v;
-    this->ui_bon = bon;
-    this->ui_entretien = entretien;
-    this->ui_panne = panne;
-    this->ui_date_achat_v = date_achat_v;
-    this->ui_date_maint_v = date_maint_v;
-}
-
 void veh::affTab(QTableWidget* table)
 {
     this->ui_table_ajout_v = table;
@@ -175,18 +225,7 @@ void veh::affTab(QTableWidget* table)
 
 void veh::refTab()
 {
-    if(ui_filtrer_v && ui_filtrer_v->currentText() != "Tous") {
-        filtrerV();
-        if(ui_trier_v && ui_trier_v->currentText() != "Trier par") {
-            trierV();
-        }
-    } else {
-        if(ui_trier_v && ui_trier_v->currentText() != "Trier par") {
-            trierV();
-        } else {
-            sqli->refTab(ui_table_ajout_v);
-        }
-    }
+    sqli->refTab(ui_table_ajout_v);
 }
 
 void veh::ConfV()
@@ -274,114 +313,42 @@ void veh::suppV()
     refTab();
 }
 
-void veh::initFiltrer(QComboBox* filtrer_v)
+void veh::initCarteGrise(QLineEdit* matricule_carte)
 {
-    this->ui_filtrer_v = filtrer_v;
-    ui_filtrer_v->clear();
-    ui_filtrer_v->addItem("Tous");
-    ui_filtrer_v->addItem("Voiture");
-    ui_filtrer_v->addItem("Moto");
-    ui_filtrer_v->addItem("AutoBus");
-    ui_filtrer_v->addItem("Camion poids lourd");
-    connect(ui_filtrer_v, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &veh::filtrerV);
+    this->ui_matricule_carte = matricule_carte;
 }
 
-void veh::filtrerV()
+void veh::reinsCarteGrise()
 {
-    if(!ui_filtrer_v || !ui_table_ajout_v) return;
-
-    QString filtre = ui_filtrer_v->currentText();
-    sqli->filtrerTab(ui_table_ajout_v, filtre);
+    if(ui_matricule_carte) {
+        ui_matricule_carte->clear();
+    }
 }
 
-void veh::initTrier(QComboBox* trier_v)
+void veh::confCarteGrise()
 {
-    this->ui_trier_v = trier_v;
-    ui_trier_v->clear();
-    ui_trier_v->addItem("Trier par");
-    ui_trier_v->addItem("Année croissante");
-    ui_trier_v->addItem("Année décroissante");
-    ui_trier_v->addItem("Kilométrage croissant");
-    ui_trier_v->addItem("Kilométrage décroissant");
-    connect(ui_trier_v, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &veh::trierV);
-}
+    if(!ui_matricule_carte) return;
 
-void veh::trierV()
-{
-    if(!ui_trier_v || !ui_table_ajout_v) return;
+    QString matricule = ui_matricule_carte->text().trimmed();
 
-    QString critere = ui_trier_v->currentText();
-    if(critere == "Trier par") {
-        refTab();
+    if(!verifMat(matricule)) {
+        QMessageBox::warning(nullptr, "Erreur", "Format de matricule invalide");
         return;
     }
 
-    sqli->trierTab(ui_table_ajout_v, critere);
-}
-
-void veh::initRech(QLineEdit* taper_v)
-{
-    this->ui_taper_v = taper_v;
-}
-
-void veh::rechV()
-{
-    if(!ui_taper_v || !ui_table_ajout_v) return;
-
-    QString modele = ui_taper_v->text();
-    sqli->rech(ui_table_ajout_v, modele);
-}
-
-void veh::expoV()
-{
-    if(!ui_table_ajout_v || ui_table_ajout_v->rowCount() == 0) {
-        QMessageBox::warning(nullptr, "erreur", "aucune donnee a exporter");
+    if(!sqli->chercheMat(matricule)) {
+        QMessageBox::warning(nullptr, "Erreur", "Matricule non trouvé dans la base de données");
         return;
     }
 
-    QString fileName = QFileDialog::getSaveFileName(nullptr, "exporter en PDF", "", "PDF Files (*.pdf)");
-    if(fileName.isEmpty()) return;
+    QMap<QString, QVariant> vehicleData = sqli->fetchVehicleForCarteGrise(matricule);
 
-    QPrinter printer;
-    printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setPageOrientation(QPageLayout::Landscape);
-    printer.setOutputFileName(fileName);
-
-    QPainter painter;
-    painter.begin(&printer);
-    QFont font = painter.font();
-    font.setPointSize(7);
-    painter.setFont(font);
-    int colPositions[8] = {30, 80, 130, 180, 230, 280, 330, 380};
-    int y = 50;
-    QStringList headers = {"Matricule", "Type", "Marque", "Modèle", "Date d'achat", "État", "Km", "Date de révision"};
-    for(int col = 0; col < headers.size(); col++) {
-        painter.drawText(colPositions[col], y, headers[col]);
-    }
-    y += 20;
-    painter.drawLine(30, y, 400, y);
-    y += 15;
-
-    for(int row = 0; row < ui_table_ajout_v->rowCount(); ++row) {
-        for(int col = 0; col < ui_table_ajout_v->columnCount(); ++col) {
-            QTableWidgetItem* item = ui_table_ajout_v->item(row, col);
-            if(item) {
-                QString text = item->text();
-                if(text.contains("T00:00:00.000")) {
-                    text = text.split("T").first();
-                }
-                painter.drawText(colPositions[col], y, text);
-            }
-        }
-        y += 15;
-        if(y > 250) {
-            printer.newPage();
-            y = 50;
-        }
+    if(vehicleData.isEmpty()) {
+        QMessageBox::warning(nullptr, "Erreur", "Erreur lors de la récupération des données du véhicule");
+        return;
     }
 
-    painter.end();
-    QMessageBox::information(nullptr, "succès", "PDF exporte avec succes");
+    CarteGriseDialog* dialog = new CarteGriseDialog(vehicleData);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->exec();
 }

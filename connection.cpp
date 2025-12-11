@@ -20,9 +20,9 @@ bool Connection::createconnect()
 {
     bool test = false;
 
-    db.setDatabaseName("source_projet2A");
-    db.setUserName("SmartSchool");
-    db.setPassword("esprit25");
+    db.setDatabaseName("smartelectronique");
+    db.setUserName("elyes");
+    db.setPassword("esprit18");
 
     if (db.open()) {
         test = true;
