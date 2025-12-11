@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QFileDialog>
+#include <QAxObject>
 #include <QDesktopServices>
 #include <QSqlQuery>
 #include <QDebug>
@@ -21,7 +22,7 @@
 #include <QListWidget>
 #include <QLabel>
 #include <QPushButton>
-#include <QObject>
+#include <QObject> // AJOUT POUR connect
 
 // Initialisation du pointeur journal
 JournalCandidat* GereCandidat::m_journal = nullptr;
@@ -521,7 +522,8 @@ bool GereCandidat::modifierCandidat(Ui::MainWindow* ui, Candidat& c, bool& isEdi
     // 4. Modification en base
     FeedbackUtilisateur::afficherChargement(parent, "Application des modifications...");
 
-    bool success = c.modifier(currentId, nouveauId,
+    // Toujours utiliser currentId pour les deux paramètres
+    bool success = c.modifier(currentId, currentId, // ← MÊME ID !
                               donnees["nom"].toString(),
                               donnees["prenom"].toString(),
                               donnees["date_naissance"].toDate(),
@@ -1203,17 +1205,7 @@ void GereCandidat::voirJournalComplet(JournalCandidat* journal, QWidget* parent)
     QListWidget *listComplet = new QListWidget(dialog);
     listComplet->setAlternatingRowColors(true);
 
-    // Use the journal parameter to get the log file path
-    QString cheminFichierLog;
-    if (journal) {
-        // If journal has a method to get the log path, use it
-        cheminFichierLog = journal->getCheminFichierLog();
-    } else {
-        // Fallback to default path
-        cheminFichierLog = QApplication::applicationDirPath() + "/journal_candidats.log";
-    }
-
-    QFile fichierLog(cheminFichierLog);
+    QFile fichierLog(QApplication::applicationDirPath() + "/journal_candidats.log");
     if (fichierLog.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&fichierLog);
         stream.setEncoding(QStringConverter::Utf8);
@@ -1225,13 +1217,11 @@ void GereCandidat::voirJournalComplet(JournalCandidat* journal, QWidget* parent)
             }
         }
         fichierLog.close();
-    } else {
-        // Show error if file can't be opened
-        listComplet->addItem("❌ Impossible d'ouvrir le fichier journal");
-        listComplet->addItem("📁 Fichier: " + cheminFichierLog);
     }
 
     QPushButton *btnFermer = new QPushButton("Fermer", dialog);
+
+    // CORRECTION : Utiliser QObject::connect au lieu de connect
     QObject::connect(btnFermer, &QPushButton::clicked, dialog, &QDialog::accept);
 
     layout->addWidget(new QLabel("Historique complet des actions:", dialog));
@@ -1241,8 +1231,6 @@ void GereCandidat::voirJournalComplet(JournalCandidat* journal, QWidget* parent)
     dialog->exec();
     delete dialog;
 }
-
-
 // MÉTHODES HELPERS
 int GereCandidat::getValeurProgression(const QString &progression)
 {

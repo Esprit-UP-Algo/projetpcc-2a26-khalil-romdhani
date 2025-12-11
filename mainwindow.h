@@ -27,7 +27,7 @@
 #include "gereseance.h"
 #include "GestionSeanceUI.h"
 #include "employe.h"
-
+#include "arduinomanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -94,6 +94,14 @@ private slots:
     void on_filtrer_mon_currentTextChanged(const QString &typePermis);
     void trierMoniteurs(const QString &critere);
      void rechargerTableauMoniteurs();
+    void initialiserArduino();
+    void onArduinoButtonPressed(ArduinoManager::ButtonType button);
+    void onArduinoConnectionChanged(bool connected);
+    void handleArduinoConfirm();
+    void updateArduinoDisplay(int percent, const QString &progression);
+    QString getCurrentProgression() const;
+    void debugArduinoState(const QString &message);
+    void resetCheckboxesFromProgression(const QString &progression);
 
 
 private:
@@ -139,6 +147,9 @@ private:
     void connecterSignaux();
     void demarrerClignotement();
     Employe* m_employe;
+    ArduinoManager* m_arduinoManager;
+    bool m_arduinoControlActive;
+    int m_arduinoControlledId;
 
 };
 

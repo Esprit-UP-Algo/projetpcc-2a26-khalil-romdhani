@@ -120,7 +120,21 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "typePermis",
     "trierMoniteurs",
     "critere",
-    "rechargerTableauMoniteurs"
+    "rechargerTableauMoniteurs",
+    "initialiserArduino",
+    "onArduinoButtonPressed",
+    "ArduinoManager::ButtonType",
+    "button",
+    "onArduinoConnectionChanged",
+    "connected",
+    "handleArduinoConfirm",
+    "updateArduinoDisplay",
+    "percent",
+    "progression",
+    "getCurrentProgression",
+    "debugArduinoState",
+    "message",
+    "resetCheckboxesFromProgression"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -133,7 +147,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      48,   14, // methods
+      56,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -141,54 +155,62 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  302,    2, 0x08,    1 /* Private */,
-       3,    0,  303,    2, 0x08,    2 /* Private */,
-       4,    0,  304,    2, 0x08,    3 /* Private */,
-       5,    0,  305,    2, 0x08,    4 /* Private */,
-       6,    0,  306,    2, 0x08,    5 /* Private */,
-       7,    0,  307,    2, 0x08,    6 /* Private */,
-       8,    0,  308,    2, 0x08,    7 /* Private */,
-       9,    0,  309,    2, 0x08,    8 /* Private */,
-      10,    0,  310,    2, 0x08,    9 /* Private */,
-      11,    0,  311,    2, 0x08,   10 /* Private */,
-      12,    0,  312,    2, 0x08,   11 /* Private */,
-      13,    0,  313,    2, 0x08,   12 /* Private */,
-      14,    0,  314,    2, 0x08,   13 /* Private */,
-      15,    0,  315,    2, 0x08,   14 /* Private */,
-      16,    0,  316,    2, 0x08,   15 /* Private */,
-      17,    0,  317,    2, 0x08,   16 /* Private */,
-      18,    0,  318,    2, 0x08,   17 /* Private */,
-      19,    1,  319,    2, 0x08,   18 /* Private */,
-      22,    1,  322,    2, 0x08,   20 /* Private */,
-      24,    1,  325,    2, 0x08,   22 /* Private */,
-      26,    0,  328,    2, 0x08,   24 /* Private */,
-      27,    1,  329,    2, 0x08,   25 /* Private */,
-      29,    0,  332,    2, 0x08,   27 /* Private */,
-      30,    0,  333,    2, 0x08,   28 /* Private */,
-      31,    0,  334,    2, 0x08,   29 /* Private */,
-      32,    0,  335,    2, 0x08,   30 /* Private */,
-      33,    0,  336,    2, 0x08,   31 /* Private */,
-      34,    1,  337,    2, 0x08,   32 /* Private */,
-      35,    0,  340,    2, 0x08,   34 /* Private */,
-      36,    0,  341,    2, 0x08,   35 /* Private */,
-      37,    0,  342,    2, 0x08,   36 /* Private */,
-      38,    1,  343,    2, 0x08,   37 /* Private */,
-      39,    0,  346,    2, 0x08,   39 /* Private */,
-      40,    1,  347,    2, 0x08,   40 /* Private */,
-      42,    0,  350,    2, 0x08,   42 /* Private */,
-      43,    1,  351,    2, 0x08,   43 /* Private */,
-      44,    0,  354,    2, 0x08,   45 /* Private */,
-      45,    0,  355,    2, 0x08,   46 /* Private */,
-      46,    0,  356,    2, 0x08,   47 /* Private */,
-      47,    1,  357,    2, 0x08,   48 /* Private */,
-      48,    0,  360,    2, 0x08,   50 /* Private */,
-      49,    0,  361,    2, 0x08,   51 /* Private */,
-      50,    0,  362,    2, 0x08,   52 /* Private */,
-      51,    2,  363,    2, 0x08,   53 /* Private */,
-      54,    1,  368,    2, 0x08,   56 /* Private */,
-      55,    1,  371,    2, 0x08,   58 /* Private */,
-      57,    1,  374,    2, 0x08,   60 /* Private */,
-      59,    0,  377,    2, 0x08,   62 /* Private */,
+       1,    0,  350,    2, 0x08,    1 /* Private */,
+       3,    0,  351,    2, 0x08,    2 /* Private */,
+       4,    0,  352,    2, 0x08,    3 /* Private */,
+       5,    0,  353,    2, 0x08,    4 /* Private */,
+       6,    0,  354,    2, 0x08,    5 /* Private */,
+       7,    0,  355,    2, 0x08,    6 /* Private */,
+       8,    0,  356,    2, 0x08,    7 /* Private */,
+       9,    0,  357,    2, 0x08,    8 /* Private */,
+      10,    0,  358,    2, 0x08,    9 /* Private */,
+      11,    0,  359,    2, 0x08,   10 /* Private */,
+      12,    0,  360,    2, 0x08,   11 /* Private */,
+      13,    0,  361,    2, 0x08,   12 /* Private */,
+      14,    0,  362,    2, 0x08,   13 /* Private */,
+      15,    0,  363,    2, 0x08,   14 /* Private */,
+      16,    0,  364,    2, 0x08,   15 /* Private */,
+      17,    0,  365,    2, 0x08,   16 /* Private */,
+      18,    0,  366,    2, 0x08,   17 /* Private */,
+      19,    1,  367,    2, 0x08,   18 /* Private */,
+      22,    1,  370,    2, 0x08,   20 /* Private */,
+      24,    1,  373,    2, 0x08,   22 /* Private */,
+      26,    0,  376,    2, 0x08,   24 /* Private */,
+      27,    1,  377,    2, 0x08,   25 /* Private */,
+      29,    0,  380,    2, 0x08,   27 /* Private */,
+      30,    0,  381,    2, 0x08,   28 /* Private */,
+      31,    0,  382,    2, 0x08,   29 /* Private */,
+      32,    0,  383,    2, 0x08,   30 /* Private */,
+      33,    0,  384,    2, 0x08,   31 /* Private */,
+      34,    1,  385,    2, 0x08,   32 /* Private */,
+      35,    0,  388,    2, 0x08,   34 /* Private */,
+      36,    0,  389,    2, 0x08,   35 /* Private */,
+      37,    0,  390,    2, 0x08,   36 /* Private */,
+      38,    1,  391,    2, 0x08,   37 /* Private */,
+      39,    0,  394,    2, 0x08,   39 /* Private */,
+      40,    1,  395,    2, 0x08,   40 /* Private */,
+      42,    0,  398,    2, 0x08,   42 /* Private */,
+      43,    1,  399,    2, 0x08,   43 /* Private */,
+      44,    0,  402,    2, 0x08,   45 /* Private */,
+      45,    0,  403,    2, 0x08,   46 /* Private */,
+      46,    0,  404,    2, 0x08,   47 /* Private */,
+      47,    1,  405,    2, 0x08,   48 /* Private */,
+      48,    0,  408,    2, 0x08,   50 /* Private */,
+      49,    0,  409,    2, 0x08,   51 /* Private */,
+      50,    0,  410,    2, 0x08,   52 /* Private */,
+      51,    2,  411,    2, 0x08,   53 /* Private */,
+      54,    1,  416,    2, 0x08,   56 /* Private */,
+      55,    1,  419,    2, 0x08,   58 /* Private */,
+      57,    1,  422,    2, 0x08,   60 /* Private */,
+      59,    0,  425,    2, 0x08,   62 /* Private */,
+      60,    0,  426,    2, 0x08,   63 /* Private */,
+      61,    1,  427,    2, 0x08,   64 /* Private */,
+      64,    1,  430,    2, 0x08,   66 /* Private */,
+      66,    0,  433,    2, 0x08,   68 /* Private */,
+      67,    2,  434,    2, 0x08,   69 /* Private */,
+      70,    0,  439,    2, 0x108,   72 /* Private | MethodIsConst  */,
+      71,    1,  440,    2, 0x08,   73 /* Private */,
+      73,    1,  443,    2, 0x08,   75 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -239,6 +261,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,   56,
     QMetaType::Void, QMetaType::QString,   58,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 62,   63,
+    QMetaType::Void, QMetaType::Bool,   65,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::QString,   68,   69,
+    QMetaType::QString,
+    QMetaType::Void, QMetaType::QString,   72,
+    QMetaType::Void, QMetaType::QString,   69,
 
        0        // eod
 };
@@ -361,7 +391,29 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'rechargerTableauMoniteurs'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'initialiserArduino'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onArduinoButtonPressed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ArduinoManager::ButtonType, std::false_type>,
+        // method 'onArduinoConnectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'handleArduinoConfirm'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'updateArduinoDisplay'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'getCurrentProgression'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'debugArduinoState'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'resetCheckboxesFromProgression'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -420,6 +472,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 45: _t->on_filtrer_mon_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 46: _t->trierMoniteurs((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 47: _t->rechargerTableauMoniteurs(); break;
+        case 48: _t->initialiserArduino(); break;
+        case 49: _t->onArduinoButtonPressed((*reinterpret_cast< std::add_pointer_t<ArduinoManager::ButtonType>>(_a[1]))); break;
+        case 50: _t->onArduinoConnectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 51: _t->handleArduinoConfirm(); break;
+        case 52: _t->updateArduinoDisplay((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 53: { QString _r = _t->getCurrentProgression();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 54: _t->debugArduinoState((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 55: _t->resetCheckboxesFromProgression((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -444,13 +505,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 48)
+        if (_id < 56)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 48;
+        _id -= 56;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 48)
+        if (_id < 56)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 48;
+        _id -= 56;
     }
     return _id;
 }

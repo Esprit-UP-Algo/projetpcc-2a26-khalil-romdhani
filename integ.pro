@@ -1,5 +1,5 @@
-QT   += core gui sql printsupport charts network serialport
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT   += core gui sql printsupport charts network serialport widgets axcontainer
+greaterThan(QT_MAJOR_VERSION, 4):
 CONFIG += c++17
 
 SOURCES += \
@@ -7,6 +7,7 @@ SOURCES += \
     GereCandidat.cpp \
     StatCandidat.cpp \
     arduino.cpp \
+    arduinomanager.cpp \
     chatbot.cpp \
     connection.cpp \
     employe.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     GereCandidat.h \
     StatCandidat.h \
     arduino.h \
+    arduinomanager.h \
     chatbot.h \
     connection.h \
     employe.h \

@@ -86,7 +86,6 @@ bool Candidat::modifier(int ancienId, int nouveauId, QString nom, QString prenom
     if (ancienId != nouveauId)
     {
         QMessageBox::warning(nullptr,"Erreur","ID ne peut pas etre modifiee");
-        return false;
     }
 
     query.prepare("UPDATE CANDIDATS SET ID_CANDIDAT=:nouveauId, NOM_C=:nom, PRENOM_C=:prenom, DATE_N_C=:date_n, "
@@ -134,6 +133,7 @@ bool Candidat::supprimer(int id_candidat)
 
     return success;
 }
+
 
 //------------teb3a seance
 QSqlQueryModel* Candidat::getCandidatsDisponibles()
